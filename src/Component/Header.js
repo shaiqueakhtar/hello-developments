@@ -6,9 +6,9 @@ function Header() {
       <header>
         <nav>
           <a href="#" className='brandName'>Hello Developments</a>
-          <ul>
+          {/* <ul>
             <li><a href="#">Sample Page</a></li>
-          </ul>
+          </ul> */}
         </nav>
       </header>
     </React.Fragment>

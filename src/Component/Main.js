@@ -1,12 +1,14 @@
 import React from 'react'
+import {useRef } from "react";
 
 function Main() {
+  const paragraphRef = useRef(null);
   return (
         <React.Fragment>
           <main>
             <section className="mainBanner">
               <div className='container'>
-                <h1>APPOINTMENTS</h1>
+                <h1 className='bannerHeading'>DRIVING DIGITAL REVOLUTION FOR BUSINESSES</h1>
               </div>
               <div className='matter'>
                 <div className='container'>
@@ -22,7 +24,13 @@ function Main() {
                   directly tied to your success: only after you make money, do we make money.</p>
                   </div>
                   <div className='matter-btn'>
-                    <button className='btn btn-primary' type='button'>Book a Discovery Call</button>
+                    <button className='btn btn-primary' type='button' onClick={() =>
+          window.scrollTo({
+            top: paragraphRef.current.offsetTop,
+            behavior: "smooth"
+          })
+        }
+        >Book A Discovery Call</button>
                   </div>
                   </div>
                   </section>
@@ -32,6 +40,7 @@ function Main() {
                 <div className="row">
                   <div className="col-md-3">
                     <div className="column-container column-one">
+                    <img src='/assets/images/1O.webp' />
                      <h2 className='column-heading'>Social Media</h2> 
                       <p>Lorem ispum dolor</p>
                      <span>CREATIVE</span>
@@ -39,6 +48,7 @@ function Main() {
                   </div>
                   <div className="col-md-3">
                     <div className="column-container column-two">
+                    <i class="fa-regular fa-globe-pointer"></i>
                     <h2 className='column-heading'>Website Development</h2> 
                     <p>Sit amet consectetur</p>
                     <span>PRACTICAL</span>
@@ -53,6 +63,7 @@ function Main() {
                   </div>
                   <div className="col-md-3">
                     <div className="column-container column-four">
+                    <i class="fa-solid fa-camera"></i>
                       <h2 className='column-heading'>Photography</h2>
                         <p>Adipiscing elit mollis</p>
                         <span>ENGAGING</span>
@@ -74,6 +85,7 @@ function Main() {
                   </div>
                   <div className="col-md-3">
                     <div className="column-container column-seven">
+                    <i class="fa-solid fa-file-contract"></i>
                       <h2 className='column-heading'>Branding</h2>
                         <p>Adipiscing elit mollis</p>
                         <span>ENGAGING</span>
@@ -81,6 +93,7 @@ function Main() {
                   </div>
                   <div className="col-md-3">
                     <div className="column-container column-eight">
+                    📱
                       <h2 className='column-heading'>E-Commerce strategy & execution</h2>
                         <p>Adipiscing elit mollis</p>
                         <span>ENGAGING</span>
@@ -102,63 +115,92 @@ function Main() {
         </div>
     </div>
     <figure>
-        <img src="https://valojak.com/wp-content/themes/aeonium/assets/images/butterflies.png" alt="" />
+        <img src="/assets/images/butterflies.png" alt="" />
     </figure>
             </div>
 
-              <div className='laptop-text'>
-            <div className="container">
-    <figure>
-        <img src="https://valojak.com/wp-content/themes/aeonium/assets/images/laptop.jpg" alt="" />
-    </figure>
-    <div class="content-text">
-        <h2 className='content-heading'>This is a large heading in this space</h2>
-        <p>With a shorter line of descriptive text here.</p>
-        <p>MAYBE A BYLINE HERE…</p>
-    </div>
-</div>
+            <div className='contact-us' ref={paragraphRef} >
+              <div className='container'>
+              <h2>Contact Us</h2>
+                  <div className='form'>
+                    <div className='name'>
+                  <input type="text" placeholder='Name' />
+                  </div>
+                  <div className='email'>
+                  <input type="email" placeholder='Email' />
+                  </div>
+                  <div className='phone'>
+                  <input type="text" placeholder='Phone Number' />
+                  </div>
+                  <div className='subject'>
+                  <input type="text" placeholder='Subject' />
+                  </div>
+                  <div className='Message'>
+                  <textarea type="text" placeholder='Message' />
+                  </div>
 
-</div>
+                  <div className='matter-btn'>
+                    <button className='btn btn-primary' type='button'>Submit</button>
+                  </div>
 
-<div className='powerful'>
-<div className="container">
-    <h2 className='powerful-h'>POWERFUL TEAM</h2>
-    <hr />
-    <p>We picked the best specialists in their respective fields, for the optimum service just for you.</p>
-</div>
-</div>
+                  </div>
+                   </div>
+                    </div>
+                    
+                     <div className='laptop-text'>
+                      <div className="container">
+                        <figure>
+                          <img src="assets/images/laptop.jpg" alt="" />
+                          </figure>
+                          <div class="content-text">
+                            <h2 className='content-heading'>Get free SEO analysis</h2>
+                            <p>See how your SEO efforts are doing with an unbiased SEO analysis from our SEO experts.</p>
+                            <p>MAYBE A BYLINE HERE…</p>
+                            <div className='seo-btn'>
+                              <button className='btn btn-seo' type='button'>Get Free SEO Support</button>
+                  </div>
+               </div>
+               </div>
+               </div>
 
-<div class="team-container">
-    <div class="team-member">
-        <div class="team-image">
-            <img src="/assets/dev.png" alt="" />
-        </div>
-        <h5>Tom Logan</h5>
-        <p>CEO</p>
-        <p>Lorem ipsum dolor</p>
-    </div>
+              <div className='clients'>
+                <div className="container">
+                  <h2 className='our-clients'>OUR CLIENTS</h2>
+                  <hr />
+                  </div>
+                  </div>
+                  
+                  <div className="team-container">
+                    <div className="team-member">
+                      <div className="team-image">
+                        <img src="/assets/images/dev.png" alt="" />
+                        </div>
+                        <h5>Tom Logan</h5>
+                        <p>CEO</p>
+                        <p>Lorem ipsum dolor</p>
+                        </div>
 
-    <div class="team-member">
-        <div class="team-image">
-            <img src="https://valojak.com/wp-content/themes/aeonium/assets/images/team-2.jpg" alt="" />
+    <div className="team-member">
+        <div className="team-image">
+            <img src="/assets/images/digital-marketer.png" alt="" />
         </div>
         <h5>Nikki Hollis</h5>
         <p>Marketing</p>
         <p>Sit amet consectetur</p>
     </div>
 
-    <div class="team-member">
-        <div class="team-image">
-            <img src="https://valojak.com/wp-content/themes/aeonium/assets/images/team-3.jpg" alt="" />
+    <div className="team-member">
+        <div className="team-image">
+            <img src="/assets/images/graphic-designer.png" alt="" />
         </div>
         <h5>Martin Bishop</h5>
         <p>Creativity</p>
         <p>Adipiscing elit mollis</p>
     </div>
 
-    <div class="team-member">
-        <div class="team-image">
-            <img src="https://valojak.com/wp-content/themes/aeonium/assets/images/team-4.jpg" alt="" />
+    <div className="team-member">
+        <div className="team-image">
+            <img src="/assets/images/web-dev.png" alt="" />
         </div>
         <h5>Emma Bradford</h5>
         <p>Support</p>
@@ -174,7 +216,7 @@ function Main() {
     <h2 className="blog-heading">Latest From Our Blog</h2>
     <div className="social-links-container">
         <ul className="social-links">
-            <li><a href="https://valojak.com/feed/" className="social-link">RSS Feed</a></li>
+            <li></li>
         </ul>
     </div>
     <p className="blog-subscribe">Subscribe today and never miss a thing.</p>
@@ -185,9 +227,9 @@ function Main() {
         <li className="post">
             <div className="post-content">
                 <figure className="post-image">
-                    <img src="https://valojak.com/wp-content/themes/aeonium/assets/images/post-placeholder.png" alt="Post Placeholder Image" />
+                    <img src="/assets/images/post-placeholder.png" alt="Post Placeholder Image" />
                 </figure>
-                <h2 className="post-title"><a href="https://valojak.com/hello-world/" target="_self">Hello world!</a></h2>
+                <h2 className="post-title"><a href="/" target="_self">Hello world!</a></h2>
             </div>
         </li>
     </ul>

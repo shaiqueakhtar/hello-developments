@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 @import url('https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 body{
   background-color: black;
   font-family: "Montserrat", sans-serif;
@@ -43,7 +44,7 @@ header nav {
   height: 25px;
 }
 .brandName::before {
-  background-image: url(http://localhost:3000/static/media/border-before.1218d6b52caf6e7ee1ee.svg);
+  background-image: url(border-before.svg);
   background-size: 100% 100%;
   left: -6px;
   top: 3px;
@@ -54,7 +55,7 @@ header nav {
   right: -6px;
   bottom: 3px;
 }
-header nav ul {
+/* header nav ul {
   margin: 0;
 }
 header nav ul li {
@@ -63,17 +64,19 @@ header nav ul li {
 header nav ul li a {
   color: #FFF;
   text-decoration: none;
-}
+} */
 /* ====== Header CSS End ======================================== */
 
 
 /* ====== Main CSS Start ======================================== */
 
-.container h1{
+.bannerHeading {
   color: rgb(243, 210, 79);
   font-weight: 700;
-  font-size: 150px;
+  font-size: 50px;
   text-align: center;
+  margin-top: 75px;
+  margin-bottom: 75px;
 }
 
 .matter{
@@ -206,7 +209,12 @@ header nav ul li a {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-  }
+    }
+
+  p {
+    margin-left: 10px;
+    margin-bottom: 1rem;
+}
   
   .spacer {
     height: 1em;
@@ -214,6 +222,7 @@ header nav ul li a {
   
   .buttons {
     display: flex;
+    margin-left: 10px;
   }
   
 
@@ -271,8 +280,9 @@ header nav ul li a {
   align-items: center;
 }
 
-.content h2{
+.content h2 {
   font-size: 24px;
+  margin-top: 50px;
 }
 
 .container .image, .container .text {
@@ -289,6 +299,7 @@ header nav ul li a {
   display: flex;
   flex-direction: row;
   align-items: center;
+  margin: 0;
 }
 
 .laptop-text .container {
@@ -312,21 +323,22 @@ header nav ul li a {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  flex: 1;
-  margin: 0;
+  flex: 1 1;
+  margin-top: -17px;
+  margin-left: -20px;
   padding: 0;
   color: #000;
 }
 
 .laptop-text .content-text h2 {
-  font-size: 48px;
+  font-size: 40px;
   text-transform: uppercase;
   margin-bottom: 10px;
   text-align: center;
 }
 
 .laptop-text .content-text p {
-  font-size: 16px;
+  font-size: 15px;
   margin-bottom: 5px;
   text-align: center;
 }
@@ -342,30 +354,78 @@ header nav ul li a {
   width: auto;
 }
 
+.btn-seo{
+  border: 2px solid;
+  padding: 11px 22px;
+  border-radius: 2px;
+  background-color: transparent;
+  background-image: none;
+  margin-left: 165px;
+}
+
+.btn-seo:hover, .btn-seo:focus{
+  background: transparent;
+  border-color: rgb(243, 210, 79);
+}
+
 /* ------- */
 
-.powerful {
+/* --------Contact US CSS Start ------- */
+
+.contact-us  {
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+.button, input, optgroup, select, textarea {
+  color: #FFF;
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  width: 40%;
+  height: 40px;
+  margin-bottom: 30px;
+  padding: 10px;
+  background-color: transparent;
+}
+
+.contact-us h2{
+  font-size: 50px;
+}
+
+/* -------Contact US CSS End ---------- */
+
+/* --------Clients CSS Start ----- */
+
+.clients {
+  margin-top: 50px;
   padding-bottom: 18px;
   text-align: center;
 }
 
-.powerful .powerful-h {
+.clients .our-clients {
   margin-bottom: 10px;
   font-size: 24px;
 }
 
-.powerful hr {
+.clients hr {
   border: none;
-  height: 1px;
-  background-color: #000;
+  height: 3px;
+  background-color: rgb(243, 210, 79);
   opacity: 0.5;
   margin: 0 auto 10px;
-  width: 50%;
+  width: 15%;
 }
 
-.powerful p {
+.clients p {
   margin-bottom: 0;
 }
+
+textarea {
+  height: 100px;
+}
+
+/* -------Clients CSS End -------- */
 
 /* -----Team Members CSS----- */
 
@@ -566,7 +626,7 @@ header nav ul li a {
 
 .about-section, .information-section, .connect-section, .scroll-top {
   flex-basis: calc(25% - 1em); 
-  padding: 0 16px; 
+  padding: 0 65px; 
 }
 
 .about-section h5,.information-section h5, .connect-section h5 {
@@ -576,18 +636,13 @@ header nav ul li a {
 .social-links {
   list-style: none;
   padding: 0;
+  color: yellow;
+  font-size: 30px;
 }
 
 .social-links li {
+  display: inline;
   margin-bottom: 0.5em;
-}
-
-.social-links a {
-  color: #fff; 
-  background-color: #007bff; 
-  padding: 0.5em 1em; 
-  border-radius: 60px; 
-  text-align: none;
 }
 
 .social-links a:hover {
@@ -597,9 +652,27 @@ header nav ul li a {
 
 .scroll-top a {
   font-size: 24px; 
+  margin-left: 145px;
 }
 
+.site-navigation li {
+  list-style: none;
+}
 
+.site-navigation li a{
+  text-decoration: none;
+}
+
+dl, ol, ul {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  margin-left: -30px;
+}
+
+.about-text {
+  margin-left: 0px;
+  margin-bottom: 1rem;
+}
 /* -------Footer CSS End-------- */
 
 

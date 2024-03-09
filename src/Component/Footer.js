@@ -5,19 +5,18 @@ import React from 'react';
 const Footer = () => {
   return (
     <React.Fragment>
-    <footer class="site-footer">
-    <div class="footer-content">
-        <div class="about-section">
+    <footer className="site-footer">
+    <div className="footer-content">
+        <div className="about-section">
             <h5>About</h5>
-            <div class="about-text">
-                <p>©2022</p>
-                <p class="site-title"><a href="https://valojak.com" target="_self" rel="home" aria-current="page">Hello Development</a></p>
+            <div className="about-text">
+                <p>©2022 <a href="/" target="_self" rel="home" aria-current="page">Hello Development</a></p>
             </div>
             <p>A few words about us here.</p>
         </div>
-        <div class="information-section">
+        <div className="information-section">
             <h5>Information</h5>
-            <nav class="site-navigation">
+            <nav className="site-navigation">
                 <ul>
                     <li><a href="#">Services</a></li>
                     <li><a href="#">Gallery</a></li>
@@ -26,17 +25,17 @@ const Footer = () => {
                 </ul>
             </nav>
         </div>
-        <div class="connect-section">
+        <div className="connect-section">
             <h5>Connect</h5>
-            <ul class="social-links">
-                <li><a href="https://facebook.com">Facebook</a></li>
-                <li><a href="https://twitter.com">Twitter</a></li>
-                <li><a href="https://linkedin.com">LinkedIn</a></li>
-                <li><a href="https://instagram.com">Instagram</a></li>
-                <li><a href="https://youtube.com">YouTube</a></li>
+            <ul className="social-links">
+                <li><i className="fa-brands fa-facebook"></i></li>
+                <li><i className="fa-brands fa-twitter"></i></li>
+                <li><i className="fa-brands fa-linkedin"></i></li>
+                <li><i className="fa-brands fa-instagram"></i></li>
+                <li><i className="fa-brands fa-youtube"></i></li>
             </ul>
         </div>
-        <div class="scroll-top">
+        <div className="scroll-top">
             <a href="#">↑</a>
         </div>
     </div>
