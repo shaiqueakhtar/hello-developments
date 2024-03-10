@@ -5,7 +5,13 @@ function Header() {
     <React.Fragment>
       <header>
         <nav>
-          <a href="#" className='brandName'>Hello Developments</a>
+          <div className='logo'>
+            <div className='container'>
+          <a href="/" className='brandName'>
+          <img className='logo' src='/assets/images/hello.png' />
+          </a>
+          </div>
+          </div>
           {/* <ul>
             <li><a href="#">Sample Page</a></li>
           </ul> */}

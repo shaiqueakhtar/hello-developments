@@ -1,8 +1,49 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import {useRef } from "react";
 
 function Main() {
   const paragraphRef = useRef(null);
+  const [inputFields, setInputFields] = useState ({
+    name:"",
+    email:"",
+    phone: "",
+    subject:"",
+    message:""
+  });
+
+    const [errors, setErrors] = useState ({});
+    const [submitting, setSubmitting] = useState(false);
+
+    const validateValues = (inputValues) => {
+      let errors = {};
+      if (inputValues.email.length < 15) {
+        errors.email = "Email is too short";
+      }
+      if (inputValues.phone.length < 10) {
+        errors.phone = "Phone Number is too short"
+      }
+      return errors;
+    }
+
+    const handleChange = (e) => {
+      setInputFields({ ...inputFields, [e.target.name]: e.target.value});
+    };
+
+    const handleSubmit = (event) =>{
+      event.preventDefault();
+      setErrors(validateValues(inputFields));
+      setSubmitting(true);
+    };
+    const finishSubmit = () => {
+      console.log(inputFields);
+    };
+
+    useEffect(() => {
+      if (Object.keys(errors).length === 0 && submitting) {
+        finishSubmit();
+      }
+      }, [errors]);
+
   return (
         <React.Fragment>
           <main>
@@ -12,16 +53,15 @@ function Main() {
               </div>
               <div className='matter'>
                 <div className='container'>
-                <p>They matter</p><br />
-                <span>We guarantee them</span>
+                <span>Our guarantee</span>
                 </div>
                 </div>
                 <div className='matter-text'>
                   <div className='container'>               
                   <p>
-                  Our unique approach centers on a pay-on-results basis, encapsulating our <br />
-                  confidence in our ability to generate value for you. This means our earnings are <br />
-                  directly tied to your success: only after you make money, do we make money.</p>
+                  We believe we can create value for you, which is why we have a unique approach  <br />
+                  that is based on a pay-on-results premise. That implies that we only profit when you do, <br />
+                   and that our income is therefore closely linked to your success.</p>
                   </div>
                   <div className='matter-btn'>
                     <button className='btn btn-primary' type='button' onClick={() =>
@@ -36,67 +76,55 @@ function Main() {
                   </section>
             
             <section className='threeColumn'>
+              <h2 className='columnHeading'>Our Expertise</h2>
               <div className='container-fluid'>
                 <div className="row">
                   <div className="col-md-3">
                     <div className="column-container column-one">
-                    <img src='/assets/images/1O.webp' />
+                    <img className='social-icons' src='/assets/images/1O.webp' />
                      <h2 className='column-heading'>Social Media</h2> 
-                      <p>Lorem ispum dolor</p>
-                     <span>CREATIVE</span>
                     </div>
                   </div>
                   <div className="col-md-3">
                     <div className="column-container column-two">
-                    <i class="fa-regular fa-globe-pointer"></i>
+                    <img className='social-icons' src='/assets/images/2O.webp' />
                     <h2 className='column-heading'>Website Development</h2> 
-                    <p>Sit amet consectetur</p>
-                    <span>PRACTICAL</span>
                     </div>
                   </div>
                   <div className="col-md-3">
                     <div className="column-container column-three">
+                    <img className='social-icons' src='/assets/images/6O.webp' />
                       <h2 className='column-heading'>Perfomance Marketing</h2>
-                        <p>Adipiscing elit mollis</p>
-                        <span>ENGAGING</span>
                     </div>
                   </div>
                   <div className="col-md-3">
                     <div className="column-container column-four">
-                    <i class="fa-solid fa-camera"></i>
+                    <img className='social-icons' src='/assets/images/5O.webp' />
                       <h2 className='column-heading'>Photography</h2>
-                        <p>Adipiscing elit mollis</p>
-                        <span>ENGAGING</span>
                     </div>
                   </div>
                   <div className="col-md-3" >
                     <div className="column-container column-five">
+                    <img className='social-icons' src='/assets/images/3O.webp' />
                       <h2 className='column-heading'>SEO</h2>
-                        <p>Adipiscing elit mollis</p>
-                        <span>ENGAGING</span>
                     </div>
                   </div>
                   <div className="col-md-3">
                     <div className="column-container column-six">
+                    <img className='social-icons' src='/assets/images/4O.webp' />
                       <h2 className='column-heading'>Application Development</h2>
-                        <p>Adipiscing elit mollis</p>
-                        <span>ENGAGING</span>
                     </div>
                   </div>
                   <div className="col-md-3">
                     <div className="column-container column-seven">
-                    <i class="fa-solid fa-file-contract"></i>
+                    <img className='social-icons' src='/assets/images/branding.webp' />
                       <h2 className='column-heading'>Branding</h2>
-                        <p>Adipiscing elit mollis</p>
-                        <span>ENGAGING</span>
                     </div>
                   </div>
                   <div className="col-md-3">
                     <div className="column-container column-eight">
-                    📱
-                      <h2 className='column-heading'>E-Commerce strategy & execution</h2>
-                        <p>Adipiscing elit mollis</p>
-                        <span>ENGAGING</span>
+                    <img className='social-icons' src='/assets/images/8O.webp' />
+                      <h2 className='column-heading'>E-Commerce strategy & execution</h2>    
                     </div>
                   </div>
                 </div>
@@ -120,17 +148,30 @@ function Main() {
             </div>
 
             <div className='contact-us' ref={paragraphRef} >
+              {Object.keys(errors).length === 0 && submitting ? (
+                <span className='success'>Successfully submitted </span>
+              ) : null}
               <div className='container'>
               <h2>Contact Us</h2>
-                  <div className='form'>
+                  <div className='form' onSubmit={handleSubmit}>
                     <div className='name'>
                   <input type="text" placeholder='Name' />
                   </div>
                   <div className='email'>
-                  <input type="email" placeholder='Email' />
+                  <input type="email" placeholder='Email' value={inputFields.email} onChange={handleChange} />
+                  {errors.email ? (
+                    <p className='errors'>
+                      Email should be at least 15 characters long
+                    </p>
+                  ): null}
                   </div>
                   <div className='phone'>
-                  <input type="text" placeholder='Phone Number' />
+                  <input type="text" placeholder='Phone Number' value={inputFields.phone} onChange={handleChange}/>
+                  {errors.phone ?(
+                    <p className='error'>
+                      Phone Number should be at least 10 number long
+                    </p>
+                  ) :null} 
                   </div>
                   <div className='subject'>
                   <input type="text" placeholder='Subject' />
@@ -138,9 +179,9 @@ function Main() {
                   <div className='Message'>
                   <textarea type="text" placeholder='Message' />
                   </div>
-
+                    {" "}
                   <div className='matter-btn'>
-                    <button className='btn btn-primary' type='button'>Submit</button>
+                    <button type="submit" className='btn btn-primary'>Submit</button>
                   </div>
 
                   </div>
@@ -152,18 +193,16 @@ function Main() {
                         <figure>
                           <img src="assets/images/laptop.jpg" alt="" />
                           </figure>
-                          <div class="content-text">
+                          <div className="content-text">
                             <h2 className='content-heading'>Get free SEO analysis</h2>
                             <p>See how your SEO efforts are doing with an unbiased SEO analysis from our SEO experts.</p>
-                            <p>MAYBE A BYLINE HERE…</p>
                             <div className='seo-btn'>
                               <button className='btn btn-seo' type='button'>Get Free SEO Support</button>
-                  </div>
-               </div>
-               </div>
-               </div>
-
-              <div className='clients'>
+                              </div>
+                              </div>
+                              </div>
+                              </div>
+                              <div className='clients'>
                 <div className="container">
                   <h2 className='our-clients'>OUR CLIENTS</h2>
                   <hr />
@@ -173,38 +212,33 @@ function Main() {
                   <div className="team-container">
                     <div className="team-member">
                       <div className="team-image">
-                        <img src="/assets/images/dev.png" alt="" />
+                        <img src="/assets/images/chinarkari.jpeg" alt="" />
                         </div>
-                        <h5>Tom Logan</h5>
-                        <p>CEO</p>
-                        <p>Lorem ipsum dolor</p>
+                        <h5>CHINARKARI</h5>
+                        <p>Artisans of Aari</p>
                         </div>
 
     <div className="team-member">
         <div className="team-image">
-            <img src="/assets/images/digital-marketer.png" alt="" />
+            <img src="/assets/images/redixpress.jpeg" alt="" />
         </div>
-        <h5>Nikki Hollis</h5>
-        <p>Marketing</p>
-        <p>Sit amet consectetur</p>
+        <h5>REDIXPRESS</h5>
+        <p>LOGISTICS</p>
     </div>
 
     <div className="team-member">
         <div className="team-image">
-            <img src="/assets/images/graphic-designer.png" alt="" />
+            <img src="/assets/images/shock & swoon.jpeg" alt="" />
         </div>
-        <h5>Martin Bishop</h5>
-        <p>Creativity</p>
-        <p>Adipiscing elit mollis</p>
+        <h5>SHOCK & SWOON</h5>
     </div>
 
     <div className="team-member">
         <div className="team-image">
-            <img src="/assets/images/web-dev.png" alt="" />
+            <img src="/assets/images/travelforwild.jpeg" alt="" />
         </div>
-        <h5>Emma Bradford</h5>
-        <p>Support</p>
-        <p>Egestas curae platea</p>
+        <h5>TRAVEL FOR WILD</h5>
+        <p>GO WILD</p>
     </div>
 </div>
 <div className='team-button'>
@@ -213,16 +247,15 @@ function Main() {
 
 <div className="blog-container">
     <hr className="separator" />
-    <h2 className="blog-heading">Latest From Our Blog</h2>
+    {/* <h2 className="blog-heading">Latest From Our Blog</h2> */}
     <div className="social-links-container">
         <ul className="social-links">
             <li></li>
         </ul>
     </div>
-    <p className="blog-subscribe">Subscribe today and never miss a thing.</p>
 </div>
 
-<div className="query-container">
+{/* <div className="query-container">
     <ul className="post-list">
         <li className="post">
             <div className="post-content">
@@ -233,7 +266,7 @@ function Main() {
             </div>
         </li>
     </ul>
-</div>
+</div> */}
 
             </main>
         </React.Fragment>
