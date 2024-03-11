@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 function Header() {
   return (
@@ -6,19 +7,22 @@ function Header() {
       <header>
         <nav>
           <div className='logo'>
-            <div className='container'>
-          <a href="/" className='brandName'>
-          <img className='logo' src='/assets/images/hello.png' />
-          </a>
-          </div>
-          </div>
-          {/* <ul>
-            <li><a href="#">Sample Page</a></li>
-          </ul> */}
+          <div className='logo-container'>
+            <div className='brand-logo'>
+               <a href="/" className='brandName'>
+                <img className='logo-image' src='/assets/images/hello.png' alt="Hello Logo" />
+               </a>
+           </div>
+         <div className='about-us'>
+           <Link to="/about">About US</Link>
+        </div>
+        </div>
+
+            </div>
         </nav>
       </header>
     </React.Fragment>
-  )
+  );
 }
 
-export default Header
+export default Header;
