@@ -1,48 +1,72 @@
 import React, { useEffect, useState } from 'react'
+import { toast } from "react-toastify";
+
 import {useRef } from "react";
 
 function Main() {
   const paragraphRef = useRef(null);
-  const [inputFields, setInputFields] = useState ({
-    name:"",
-    email:"",
-    phone: "",
-    subject:"",
-    message:""
+  const [firstName, setFirstName] = useState('') // useState to store First Name
+  const [email, setEmail] = useState('') // useState to store Email address of the user
+  const [phone, setPhone] = useState('') // useState to store Email address of the user
+  const [subject, setSubject] = useState('') // useState to store Email address of the user
+  const [message, setMessage] = useState('') // useState to store Email address of the user
+
+
+  const notifySuccess = (msg) =>
+  toast(msg, {
+    type: "success",
+    position: "top-right",
   });
 
-    const [errors, setErrors] = useState ({});
-    const [submitting, setSubmitting] = useState(false);
+    function validateForm() 
+    {
+      document.querySelectorAll(".text-danger").forEach(el => el.remove());
+       var error = false;
+      var elements = document.querySelectorAll('input,textarea');
+      for (var i=0; i<elements.length; i++)
+      {
+        if(elements[i].value=='')
+        {
+          var new_row = document.createElement("span");
+           new_row.className = "text-danger";
+           new_row.innerHTML = " Input is required";
+          elements[i].after(new_row)
+          error = true;
+        }
+      }
+     
+      if(!error)
+      {
+      // Using Fetch API
+fetch('https://hellodevelopments.com/api/', {
+  method: 'POST',
+  body: JSON.stringify(
+    {
+    "name" : firstName,
+    "email" : email,
+    "phone" : phone,
+    "subject" : subject,
+    "message" : message
+  }),
+  headers: {
+    'Content-type': 'application/json; charset=UTF-8',
+  },
+})
+   .then((response) => response.json())
+   .then((data) => {
+    notifySuccess("Enquiry sent successfully.");
+      // Handle data
+   })
+   .catch((err) => {
+      console.log(err.message);
+   });
 
-    const validateValues = (inputValues) => {
-      let errors = {};
-      if (inputValues.email.length < 15) {
-        errors.email = "Email is too short";
+    
       }
-      if (inputValues.phone.length < 10) {
-        errors.phone = "Phone Number is too short"
-      }
-      return errors;
+
     }
 
-    const handleChange = (e) => {
-      setInputFields({ ...inputFields, [e.target.name]: e.target.value});
-    };
-
-    const handleSubmit = (event) =>{
-      event.preventDefault();
-      setErrors(validateValues(inputFields));
-      setSubmitting(true);
-    };
-    const finishSubmit = () => {
-      console.log(inputFields);
-    };
-
-    useEffect(() => {
-      if (Object.keys(errors).length === 0 && submitting) {
-        finishSubmit();
-      }
-      }, [errors]);
+    
 
   return (
         <React.Fragment>
@@ -148,40 +172,28 @@ function Main() {
             </div>
 
             <div className='contact-us' ref={paragraphRef} >
-              {Object.keys(errors).length === 0 && submitting ? (
-                <span className='success'>Successfully submitted </span>
-              ) : null}
               <div className='container'>
               <h2>Contact Us</h2>
-                  <div className='form' onSubmit={handleSubmit}>
+                  <div className='form'>
                     <div className='name'>
-                  <input type="text" placeholder='Name' />
+                  <input type="text" placeholder='Name' onChange={(e) => setFirstName(e.target.value)}/>
                   </div>
                   <div className='email'>
-                  <input type="email" placeholder='Email' value={inputFields.email} onChange={handleChange} />
-                  {errors.email ? (
-                    <p className='errors'>
-                      Email should be at least 15 characters long
-                    </p>
-                  ): null}
+                  <input type="email" placeholder='Email'  onChange={(e) => setEmail(e.target.value)}/>
                   </div>
                   <div className='phone'>
-                  <input type="text" placeholder='Phone Number' value={inputFields.phone} onChange={handleChange}/>
-                  {errors.phone ?(
-                    <p className='error'>
-                      Phone Number should be at least 10 number long
-                    </p>
-                  ) :null} 
+                  <input type="text" placeholder='Phone Number' onChange={(e) => setPhone(e.target.value)}/>
                   </div>
                   <div className='subject'>
-                  <input type="text" placeholder='Subject' />
+                  <input type="text" placeholder='Subject' onChange={(e) => setSubject(e.target.value)}/>
                   </div>
                   <div className='Message'>
-                  <textarea type="text" placeholder='Message' />
+                  <textarea type="text" placeholder='Message'  onChange={(e) => setMessage(e.target.value)}/>
                   </div>
-                    {" "}
                   <div className='matter-btn'>
-                    <button type="submit" className='btn btn-primary'>Submit</button>
+                    <button type="button" className='btn btn-primary' onClick={() => {
+            validateForm()
+          }}>Submit</button>
                   </div>
 
                   </div>
@@ -247,7 +259,6 @@ function Main() {
 
 <div className="blog-container">
     <hr className="separator" />
-    {/* <h2 className="blog-heading">Latest From Our Blog</h2> */}
     <div className="social-links-container">
         <ul className="social-links">
             <li></li>
@@ -255,18 +266,6 @@ function Main() {
     </div>
 </div>
 
-{/* <div className="query-container">
-    <ul className="post-list">
-        <li className="post">
-            <div className="post-content">
-                <figure className="post-image">
-                    <img src="/assets/images/post-placeholder.png" alt="Post Placeholder Image" />
-                </figure>
-                <h2 className="post-title"><a href="/" target="_self">Hello world!</a></h2>
-            </div>
-        </li>
-    </ul>
-</div> */}
 
             </main>
         </React.Fragment>
